@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CompanySearchApplication</string>
+    <string name="main">Main Activity</string>
+    <string name="move">MOVE</string>
+    <string name="sub"> Activity</string>
+    <string name="return_sub">RETURN</string>
+</resources>
