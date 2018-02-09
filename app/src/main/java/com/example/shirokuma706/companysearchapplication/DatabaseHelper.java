@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by shirokuma706 on 2018/01/15.
  */
-
+/*ここから平井作成*/
 public class DatabaseHelper extends SQLiteOpenHelper {
     /* データベース名 */
     private final static String DB_NAME = "company";
@@ -33,3 +33,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase,int i,int n) {
     }
 }
+/*ここまで平井作成*/

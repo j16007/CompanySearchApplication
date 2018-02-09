@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+/*ここから木村作成*/
 public class Main2Activity extends AppCompatActivity {
     /*検索文字列変数*/
     String query;
@@ -29,6 +29,28 @@ public class Main2Activity extends AppCompatActivity {
         public void onClick(View v){button_Delete1_Click(v);
         }};
 
+    public void reset(){
+        TextView TV = (TextView) findViewById(R.id.textView);
+        String[] columns = new String[]{"name","addres","tell"};
+        DatabaseHelper myDB = new DatabaseHelper(this);
+        SQLiteDatabase db = myDB.getWritableDatabase();
+        Cursor ret;
+        String result = "";
+
+        try { ret = db.query("MyTable", columns, null,null,null,null,null);
+            if (ret.moveToFirst()){
+                do{
+                    result += "企業名:" + ret.getString(ret.getColumnIndex("name"))
+                            + "  住所:" + ret.getString(ret.getColumnIndex("addres"))
+                            + "  電話番号:" + ret.getString(ret.getColumnIndex("tell"))
+                            + "\n";
+                }while(ret.moveToNext());
+            }
+        } finally {
+            db.close();
+        }
+        TV.setText(result);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,28 +100,9 @@ public class Main2Activity extends AppCompatActivity {
                 }
             }
         });
-
         /*データベースの表示*/
-        TextView TV = (TextView) findViewById(R.id.textView);
-        String[] columns = new String[]{"name","addres","tell"};
-        DatabaseHelper myDB = new DatabaseHelper(this);
-        SQLiteDatabase db = myDB.getWritableDatabase();
-        Cursor ret;
-        String result = "";
+        reset();
 
-        try { ret = db.query("MyTable", columns, null,null,null,null,null);
-            if (ret.moveToFirst()){
-                do{
-                    result += "企業名:" + ret.getString(ret.getColumnIndex("name"))
-                            + "  住所:" + ret.getString(ret.getColumnIndex("addres"))
-                            + "  電話番号:" + ret.getString(ret.getColumnIndex("tell"))
-                            + "\n";
-                }while(ret.moveToNext());
-            }
-        } finally {
-            db.close();
-        }
-        TV.setText(result);
     }
 
     /*全件削除ボタン処理*/
@@ -143,25 +146,10 @@ public class Main2Activity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "削除成功", Toast.LENGTH_SHORT).show();
         }
-        TextView TV = (TextView) findViewById(R.id.textView);
-        String[] columns = new String[]{"name","addres","tell"};
-        DatabaseHelper myDB = new DatabaseHelper(this);
-        SQLiteDatabase db2 = myDB.getWritableDatabase();
-        Cursor ret2;
-        String result = "";
+        /*再描画*/
+        reset();
 
-        try { ret2 = db2.query("MyTable", columns, null,null,null,null,null);
-            if (ret2.moveToFirst()){
-                do{
-                    result += "企業名:" + ret2.getString(ret2.getColumnIndex("name"))
-                            + "  住所:" + ret2.getString(ret2.getColumnIndex("addres"))
-                            + "  電話番号:" + ret2.getString(ret2.getColumnIndex("tell"))
-                            + "\n";
-                }while(ret2.moveToNext());
-            }
-        } finally {
-            db2.close();
-        }
-        TV.setText(result);
+
     }
 }
+/*ここまで木村作成*/

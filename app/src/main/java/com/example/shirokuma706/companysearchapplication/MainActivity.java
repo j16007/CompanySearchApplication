@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+/*ここから木村作成*/
 public class MainActivity extends AppCompatActivity {
 
     private Button button1;
@@ -75,3 +75,4 @@ public class MainActivity extends AppCompatActivity {
         editText3.setText("");
     }
 }
+/*ここまで木村作成*/
